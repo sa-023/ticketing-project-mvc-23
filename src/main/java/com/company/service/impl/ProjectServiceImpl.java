@@ -1,6 +1,6 @@
 package com.company.service.impl;
-import com.company.dto.UserDTO;
-import com.company.service.UserService;
+import com.company.dto.ProjectDTO;
+import com.company.service.ProjectService;
 import org.springframework.stereotype.Service;
 import java.util.List;
 /*
@@ -11,29 +11,25 @@ import java.util.List;
  * · We can use the @Service annotation for service.impls classes instead of @Component.
  */
 @Service
-public class UserServiceImpl extends AbstractMapService<UserDTO,String> implements UserService {
+public class ProjectServiceImpl extends AbstractMapService<ProjectDTO,String> implements ProjectService {
     @Override
-    public UserDTO save(UserDTO object) {
-        return super.save(object.getUserName(), object);
+    public ProjectDTO save(ProjectDTO object) {
+        return super.save(object.getProjectCode(), object);
     }
-
     @Override
-    public List<UserDTO> findAll() {
+    public List<ProjectDTO> findAll() {
         return super.findAll();
     }
-
+    @Override
+    public void update(ProjectDTO object) {
+        super.update(object.getProjectCode(), object);
+    }
     @Override
     public void deleteById(String id) {
         super.deleteById(id);
     }
-
     @Override
-    public void update(UserDTO object) {
-        super.update(object.getUserName(), object);
-    }
-
-    @Override
-    public UserDTO findById(String  id) {
+    public ProjectDTO findById(String id) {
         return super.findById(id);
     }
 
