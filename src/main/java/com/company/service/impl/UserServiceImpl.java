@@ -3,6 +3,8 @@ import com.company.dto.UserDTO;
 import com.company.service.UserService;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.stream.Collectors;
+
 /*
  * 🖍️...
  * · Overridden methods inherited from CrudService interface.
@@ -35,6 +37,16 @@ public class UserServiceImpl extends AbstractMapService<UserDTO,String> implemen
     @Override
     public UserDTO findById(String  id) {
         return super.findById(id);
+    }
+
+    @Override
+    public List<UserDTO> findManagers() {
+        return super.findAll().stream().filter(user -> user.getRole().getId() == 2).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UserDTO> findEmployees() {
+        return super.findAll().stream().filter(userDTO -> userDTO.getRole().getId() == 3).collect(Collectors.toList());
     }
 
 
